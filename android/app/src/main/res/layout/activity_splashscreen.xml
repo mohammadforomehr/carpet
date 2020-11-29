@@ -44,8 +44,18 @@
                 android:fontFamily="@font/mj_classic"
                 ></TextView>
         </LinearLayout>
+
+        <com.wang.avi.AVLoadingIndicatorView
+            android:layout_gravity="center|bottom"
+            android:layout_marginBottom="10dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/indicator_spalsh"
+            style="@style/AVLoadingIndicatorView"
+            />
         <LinearLayout
-            android:visibility="invisible"
+            android:id="@+id/lnr_status_net"
+            android:visibility="gone"
             android:orientation="vertical"
             android:layout_gravity="center|bottom"
             android:gravity="center"
@@ -59,14 +69,19 @@
                 android:text="خطا در اتصال به اینترنت ..."
                 android:textSize="20dp"></TextView>
             <LinearLayout
+                android:padding="5dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/ripple"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:id="@+id/check_intenet"
+                android:id="@+id/lnr_check_intenet"
                 android:gravity="center">
                 <TextView
+                    android:layout_marginRight="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#ffff"
