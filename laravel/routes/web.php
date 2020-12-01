@@ -28,3 +28,5 @@ Route::get('/app/cat_carpet/{id_category}',\App\Http\Controllers\app\CategoryCon
 Route::post('/app/offers',\App\Http\Controllers\app\OffersController::class .'@store');
 //news
 Route::get('/app/news',\App\Http\Controllers\app\NewsController::class . '@index');
+//benner
+Route::get('/app/baner',\App\Http\Controllers\app\BanerController::class . '@index');
