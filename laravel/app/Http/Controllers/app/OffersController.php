@@ -12,7 +12,7 @@ class OffersController extends Controller
 
 public function store(Request $request){
 
-    $result=offers::create(
+    $results=offers::create(
         [
             'name' => $request['name'],
             'email' => $request['email'],
@@ -21,6 +21,8 @@ public function store(Request $request){
             'message' => $request['message'],
         ]
     );
-    return ['result'=>$result];
+    return response()->json([
+        'result' => $results
+    ]);
 }
 }

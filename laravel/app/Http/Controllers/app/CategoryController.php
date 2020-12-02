@@ -19,7 +19,9 @@ class CategoryController extends Controller
             ];
         }
         if ($results != null) {
-            return ['result' => $results];
+            return response()->json([
+                'result' => $results
+            ]);
         }else{
             return ['result'=> 'not data'];
         }
@@ -36,7 +38,9 @@ class CategoryController extends Controller
             ];
         }
         if ($results != null) {
-            return ['result' => $results];
+            return response()->json([
+                'result' => $results
+            ]);
         }else{
             return ['result'=> 'not data'];
         }
@@ -54,7 +58,9 @@ class CategoryController extends Controller
             ];
         }
         if ($results != null) {
-            return ['result' => $results];
+            return response()->json([
+                'result' => $results
+            ]);
         }else{
             return ['result'=> 'not data'];
         }

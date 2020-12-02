@@ -22,7 +22,9 @@ class PostController extends Controller
             ];
         }
         if ($results != null) {
-            return ['result' => $results];
+            return response()->json([
+                'result' => $results
+            ]);
         }else{
             return ['result'=> 'not data'];
         }
@@ -38,14 +40,18 @@ class PostController extends Controller
             ];
         }
         if ($results != null) {
-            return ['result' => $results];
+            return response()->json([
+                'result' => $results
+            ]);
         }else{
             return ['result'=> 'not data'];
         }
     }
     public function detail($id){
-        $result=post::find($id);
-        return ['result'=>$result];
+        $results=post::find($id);
+        return response()->json([
+            'result' => $results
+        ]);
     }
     Public function search($field,$value){
         $results = [];
@@ -58,7 +64,9 @@ class PostController extends Controller
             ];
         }
         if ($results != null) {
-            return ['result' => $results];
+            return response()->json([
+                'result' => $results
+            ]);
         }else{
             return ['result'=> 'not data'];
         }
