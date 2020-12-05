@@ -25,12 +25,14 @@ public class Adapter_Home extends RecyclerView.Adapter<Adapter_Home.ViewHolder> 
     ArrayList<String> image=new ArrayList<>() ;
     ArrayList<Integer> price=new ArrayList<>();
     Context context;
-    public Adapter_Home(Context context,ArrayList<Integer> id,ArrayList<String> title,ArrayList<String> image,ArrayList<Integer>price){
+    Integer count=0;
+    public Adapter_Home(Context context,ArrayList<Integer> id,ArrayList<String> title,ArrayList<String> image,ArrayList<Integer>price,Integer count){
         this.id=id;
         this.title=title;
         this.image=image;
         this.price=price;
         this.context=context;
+        this.count=count;
     }
     @Override
     public Adapter_Home.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -57,10 +59,14 @@ public class Adapter_Home extends RecyclerView.Adapter<Adapter_Home.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        if (10>id.size()) {
-            return id.size();
+        if (count!=0) {
+            if (10 > id.size()) {
+                return id.size();
+            } else {
+                return 10;
+            }
         }else {
-            return 10;
+            return id.size();
         }
     }
 

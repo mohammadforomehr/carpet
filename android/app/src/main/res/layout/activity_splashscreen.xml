@@ -31,18 +31,17 @@
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/carpet"
-                ></ImageView>
+                android:src="@drawable/carpet"></ImageView>
+
             <TextView
-                android:layout_marginTop="-15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="فرش"
-                android:textSize="40dp"
-                android:textColor="#ffff"
-                android:textAlignment="center"
+                android:layout_marginTop="-15dp"
                 android:fontFamily="@font/mj_classic"
-                ></TextView>
+                android:text="فرش"
+                android:textAlignment="center"
+                android:textColor="#ffff"
+                android:textSize="40dp"></TextView>
         </LinearLayout>
 
         <com.wang.avi.AVLoadingIndicatorView

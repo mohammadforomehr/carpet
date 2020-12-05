@@ -4,8 +4,9 @@
     android:enabled="true"
     android:icon="@drawable/ic_home_black_24dp"
     android:title="صفحه اصلی"></item>
-    <item android:id="@+id/nav_search"
+    <item android:id="@+id/nav_offers"
         android:enabled="true"
-        android:icon="@drawable/ic_search_black_24dp"
-        android:title="جستجو"></item>
+        android:icon="@drawable/ic_contract"
+        android:title="پیشنهادات"></item>
+
 </menu>

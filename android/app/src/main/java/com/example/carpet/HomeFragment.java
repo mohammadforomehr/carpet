@@ -1,14 +1,17 @@
 package com.example.carpet;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,6 +27,8 @@ import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.example.carpet.RecyclerAdapter.Adapter_Home;
 import com.example.carpet.config.AppController;
 import com.example.carpet.config.Urls;
+import com.facebook.shimmer.ShimmerFrameLayout;
+import com.todkars.shimmer.ShimmerRecyclerView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,7 +36,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment  {
     SliderLayout sliderimage;
     TextSliderView textSliderView;
     RecyclerView rcl_new ,rcl_amz ;
@@ -39,11 +44,15 @@ public class HomeFragment extends Fragment {
     RecyclerView.Adapter adp_new,adp_amz;
     ArrayList<Integer> price_new,price_amz,id_new,id_amz;
     ArrayList<String> title_new,title_amz,img_new,img_amz;
-    private RequestQueue mQueue;
+    TextView txv_all_new,txv_all_amz;
+    Intent intent;
+    ShimmerRecyclerView shimmer_new,shimmer_amz;
+    ShimmerFrameLayout shimmer_slider;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_home,container,false);
+
     }
 
     @Override
@@ -54,7 +63,9 @@ public class HomeFragment extends Fragment {
         requestslider();
         request_rclamz();
         request_rclnew();
+
     }
+
     public void Definition_array(){
         price_new=new ArrayList<>();
         price_amz=new ArrayList<>();
@@ -86,7 +97,40 @@ public class HomeFragment extends Fragment {
         rcl_amz.setHasFixedSize(true);
         rcl_amz.setLayoutManager(rcl_mng_amz);
         rcl_amz.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
+        // Text view
+        txv_all_amz=view.findViewById(R.id.txv_amazing);
+        txv_all_new=view.findViewById(R.id.txv_new);
+        txv_all_amz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent=new Intent(getActivity(), ListRecycleHome.class);
+                intent.putExtra("Title", "پیشنهاد ویژه");
+                intent.putExtra("Url", "/app/amazing?page=1");
+                startActivity(intent);
+            }
+        });
+        txv_all_new.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent=new Intent(getActivity(), ListRecycleHome.class);
+                intent.putExtra("Title", "جدیدترین محصولات");
+                intent.putExtra("Url", "/app/new?page=1");
+                startActivity(intent);
+            }
+        });
+        //shimmer
+        shimmer_new = view.findViewById(R.id.shimmer_rcl_new);
+        shimmer_new.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
+        shimmer_new.setHasFixedSize(true);
+        shimmer_new.showShimmer();
 
+        shimmer_amz = view.findViewById(R.id.shimmer_rcl_amz);
+        shimmer_amz.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
+        shimmer_amz.setHasFixedSize(true);
+        shimmer_amz.showShimmer();
+
+        shimmer_slider = view.findViewById(R.id.shimmer_slider);
+        shimmer_slider.startShimmer();
     }
     private void requestslider() {
         String url = Urls.url+"/app/baner";
@@ -108,8 +152,8 @@ public class HomeFragment extends Fragment {
                                 .image(Urls.url+object.getString("image"))
                                 .setScaleType(BaseSliderView.ScaleType.Fit);
                         sliderimage.addSlider(textSliderView);
-
-
+                        shimmer_slider.setVisibility(View.GONE);
+                        sliderimage.setVisibility(View.VISIBLE);
 
                     }
 
@@ -143,15 +187,16 @@ public class HomeFragment extends Fragment {
             {
                 try
                 {
-                    JSONArray obj = response.getJSONArray("result");
-                    for (int i =obj.length()-1;i>= 0;i--) {
+                    JSONArray obj = response.getJSONArray("data");
+                    for (int i =0;i < obj.length() ;i++) {
                         JSONObject object = obj.getJSONObject(i);
                         price_new.add(object.getInt("price"));
                         id_new.add(object.getInt("id"));
                         title_new.add(object.getString("title"));
                         img_new.add(object.getString("image"));
                     }
-                    adp_new=new Adapter_Home(getActivity(),id_new,title_new,img_new,price_new);
+                    adp_new=new Adapter_Home(getActivity(),id_new,title_new,img_new,price_new,10);
+                    shimmer_new.setVisibility(View.GONE);
                     rcl_new.setAdapter(adp_new);
                 }
                 catch (JSONException e)
@@ -178,20 +223,22 @@ public class HomeFragment extends Fragment {
         String url = Urls.url+"/app/amazing";
         Response.Listener<JSONObject> listener = new Response.Listener<JSONObject>()
         {
+
             @Override
             public void onResponse(JSONObject response)
             {
                 try
                 {
-                    JSONArray obj = response.getJSONArray("result");
-                    for (int i =obj.length()-1;i>= 0;i--) {
+                    JSONArray obj = response.getJSONArray("data");
+                    for (int i =0;i < obj.length() ;i++) {
                         JSONObject object = obj.getJSONObject(i);
                         price_amz.add(object.getInt("price"));
                         id_amz.add(object.getInt("id"));
                         title_amz.add(object.getString("title"));
                         img_amz.add(object.getString("image"));
                     }
-                    adp_amz=new Adapter_Home(getActivity(),id_amz,title_amz,img_amz,price_amz);
+                    adp_amz=new Adapter_Home(getActivity(),id_amz,title_amz,img_amz,price_amz,10);
+                    shimmer_amz.setVisibility(View.GONE);
                     rcl_amz.setAdapter(adp_amz);
                 }
                 catch (JSONException e)
@@ -214,4 +261,5 @@ public class HomeFragment extends Fragment {
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, listener, errorListener);
         AppController.getInstance().addToRequestQueue(request);
     }
+
 }
