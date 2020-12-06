@@ -1,6 +1,6 @@
 package com.example.carpet.Model;
 
-public class Carpet {
+public class Categoris {
 
     private String title;
     private String image;

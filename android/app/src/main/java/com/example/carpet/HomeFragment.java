@@ -24,6 +24,7 @@ import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.example.carpet.Model.Carpet;
 import com.example.carpet.RecyclerAdapter.Adapter_Home;
 import com.example.carpet.config.AppController;
 import com.example.carpet.config.Urls;
@@ -35,6 +36,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HomeFragment extends Fragment  {
     SliderLayout sliderimage;
@@ -42,8 +44,6 @@ public class HomeFragment extends Fragment  {
     RecyclerView rcl_new ,rcl_amz ;
     RecyclerView.LayoutManager rcl_mng_new,rcl_mng_amz;
     RecyclerView.Adapter adp_new,adp_amz;
-    ArrayList<Integer> price_new,price_amz,id_new,id_amz;
-    ArrayList<String> title_new,title_amz,img_new,img_amz;
     TextView txv_all_new,txv_all_amz;
     Intent intent;
     ShimmerRecyclerView shimmer_new,shimmer_amz;
@@ -59,23 +59,13 @@ public class HomeFragment extends Fragment  {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Definition_element(view);
-        Definition_array();
         requestslider();
         request_rclamz();
         request_rclnew();
 
     }
 
-    public void Definition_array(){
-        price_new=new ArrayList<>();
-        price_amz=new ArrayList<>();
-        id_new=new ArrayList<>();
-        id_amz=new ArrayList<>();
-        title_new=new ArrayList<>();
-        title_amz=new ArrayList<>();
-        img_new=new ArrayList<>();
-        img_amz=new ArrayList<>();
-    }
+
     public void Definition_element(View view){
         //bannerslide
         sliderimage=view.findViewById(R.id.sliderimg_home);
@@ -187,15 +177,18 @@ public class HomeFragment extends Fragment  {
             {
                 try
                 {
+                    ArrayList<Carpet> arrayList = new ArrayList<>();
                     JSONArray obj = response.getJSONArray("data");
                     for (int i =0;i < obj.length() ;i++) {
+                        Carpet item=new Carpet();
                         JSONObject object = obj.getJSONObject(i);
-                        price_new.add(object.getInt("price"));
-                        id_new.add(object.getInt("id"));
-                        title_new.add(object.getString("title"));
-                        img_new.add(object.getString("image"));
+                        item.setPrice(object.getInt("price"));
+                        item.setId(object.getInt("id"));
+                        item.setTitle(object.getString("title"));
+                        item.setImage(object.getString("image"));
+                        arrayList.add(item);
                     }
-                    adp_new=new Adapter_Home(getActivity(),id_new,title_new,img_new,price_new,10);
+                    adp_new=new Adapter_Home(getActivity(),arrayList,10);
                     shimmer_new.setVisibility(View.GONE);
                     rcl_new.setAdapter(adp_new);
                 }
@@ -229,15 +222,18 @@ public class HomeFragment extends Fragment  {
             {
                 try
                 {
+                    ArrayList<Carpet> arrayList = new ArrayList<>();
                     JSONArray obj = response.getJSONArray("data");
                     for (int i =0;i < obj.length() ;i++) {
+                        Carpet item=new Carpet();
                         JSONObject object = obj.getJSONObject(i);
-                        price_amz.add(object.getInt("price"));
-                        id_amz.add(object.getInt("id"));
-                        title_amz.add(object.getString("title"));
-                        img_amz.add(object.getString("image"));
+                        item.setPrice(object.getInt("price"));
+                        item.setId(object.getInt("id"));
+                        item.setTitle(object.getString("title"));
+                        item.setImage(object.getString("image"));
+                        arrayList.add(item);
                     }
-                    adp_amz=new Adapter_Home(getActivity(),id_amz,title_amz,img_amz,price_amz,10);
+                    adp_amz=new Adapter_Home(getActivity(),arrayList,10);
                     shimmer_amz.setVisibility(View.GONE);
                     rcl_amz.setAdapter(adp_amz);
                 }

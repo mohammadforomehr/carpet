@@ -34,8 +34,7 @@ public class ListRecycleHome extends AppCompatActivity {
     TextView txv_title;
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
-    Carpet item;
-    List<Carpet> arrayList;
+    List<Carpet> arrayList=new ArrayList<Carpet>();
     Bundle bundle;
     ShimmerRecyclerView shimmerRecyclerView;
     AVLoadingIndicatorView indicatorView;
@@ -52,7 +51,7 @@ public class ListRecycleHome extends AppCompatActivity {
     }
     public void Definition_array(){
         arrayList=new ArrayList<>();
-        item=new Carpet();
+
     }
     public void Definition_element(){
         //recycle view
@@ -81,6 +80,7 @@ public class ListRecycleHome extends AppCompatActivity {
                 {
                     JSONArray obj = response.getJSONArray("data");
                     for (int i =0;i <obj.length() ;i++) {
+                        Carpet item=new Carpet();
                         JSONObject object = obj.getJSONObject(i);
                         item.setPrice(object.getInt("price"));
                         item.setId(object.getInt("id"));

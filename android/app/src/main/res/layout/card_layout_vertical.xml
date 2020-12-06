@@ -18,7 +18,7 @@
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
     android:clickable="true"
-    android:layout_marginBottom="20dp"
+    android:layout_marginBottom="2dp"
     card_view:cardCornerRadius="20dp"
     android:outlineAmbientShadowColor="#F44336"
     android:outlineSpotShadowColor="#F44336"
@@ -75,29 +75,29 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="1dp"
             android:id="@+id/txv_shoulder_list"/>
         <TextView
-            android:text="سایز : "
+            android:text="|سایز : "
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="10dp"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="1dp"
             android:id="@+id/txv_size_list"/>
         <TextView
-            android:text="رنگ : "
+            android:text="|رنگ : "
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="10dp"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="1dp"
             android:id="@+id/txv_color_list"/>
 
     </LinearLayout>

@@ -38,6 +38,14 @@
                 ></TextView>
         </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
+    <ScrollView
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
     <com.todkars.shimmer.ShimmerRecyclerView
         android:id="@+id/shimmer_rcl_list"
         android:layout_width="match_parent"
@@ -57,7 +65,7 @@
 
         />
     <com.wang.avi.AVLoadingIndicatorView
-        android:visibility="gone"
+        android:visibility="invisible"
         android:layout_gravity="center|bottom"
         android:layout_marginBottom="10dp"
         android:layout_width="50dp"
@@ -67,4 +75,6 @@
         app:indicatorName="ballSpinFadeLoader"
         style="@style/AVLoadingIndicatorView"
         />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

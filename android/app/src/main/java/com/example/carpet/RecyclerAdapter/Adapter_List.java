@@ -16,6 +16,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.carpet.DetailCarpet;
 import com.example.carpet.ListRecycleHome;
 import com.example.carpet.Model.Carpet;
 import com.example.carpet.R;
@@ -38,6 +39,7 @@ public class Adapter_List extends RecyclerView.Adapter<Adapter_List.ViewHolder> 
     int currentPage =1;
     int lastPage = 0;
     String next_page;
+    Boolean loaddata=false;
     AVLoadingIndicatorView indicatorView;
     public Adapter_List(Context context,List<Carpet> arrayList, int lastPage,String next_page,AVLoadingIndicatorView indicatorView){
         this.arrayList=arrayList;
@@ -56,23 +58,23 @@ public class Adapter_List extends RecyclerView.Adapter<Adapter_List.ViewHolder> 
     @Override
     public void onBindViewHolder(final ViewHolder holder,final int position) {
         DecimalFormat format_number=new DecimalFormat("###,###,###");
-        Carpet item=arrayList.get(position);
+        final Carpet item=arrayList.get(position);
         holder.item_title.setText(item.getTitle());
         holder.item_size.setText(item.getSize()+"");
         holder.item_color.setText(item.getColor());
-        holder.item_shoulder.setText(item.getShoulder()+"");
+        holder.item_shoulder.setText((item.getShoulder()+""));
         holder.item_price.setText(format_number.format(item.getPrice())+" تومان");
-        Picasso.with(context).load(Urls.url+item.getImage()).into(holder.item_image);
-//        holder.click_item_recycler.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                holder.intent=new Intent(context,info_item.class);
-//                holder.intent.putExtra("id_carpet",isbn.get(position)+"");
-//                context.startActivity( holder.intent);
-//            }
-//        });
-        if(position == getItemCount()-3){
-            if (currentPage <= lastPage ){
+        Picasso.with(context).load(Urls.url+item.getImage()).into(  holder.item_image);
+        holder.click_item_recycler.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holder.intent=new Intent(context, DetailCarpet.class);
+                holder.intent.putExtra("IdCarpet","/app/detail/"+item.getId());
+                context.startActivity( holder.intent);
+            }
+        });
+        if(position == getItemCount()-1){
+            if (currentPage < lastPage ){
                 indicatorView.setVisibility(View.VISIBLE);
                 String url = next_page;
                 Response.Listener<JSONObject> listener = new Response.Listener<JSONObject>()
@@ -99,8 +101,9 @@ public class Adapter_List extends RecyclerView.Adapter<Adapter_List.ViewHolder> 
                            next_page=response.getString("next_page_url");
                            }
                             currentPage=response.getInt("current_page");
-                            notifyDataSetChanged();
+                            notifyItemInserted(arrayList.size()-1);
                             indicatorView.setVisibility(View.GONE);
+
                         }
                         catch (JSONException e)
                         {

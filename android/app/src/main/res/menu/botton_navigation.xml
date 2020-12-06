@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_categoris"
+        android:enabled="true"
+        android:icon="@drawable/ic_list"
+        android:title="دسته بندی"></item>
 <item android:id="@+id/nav_home"
     android:enabled="true"
     android:icon="@drawable/ic_home_black_24dp"

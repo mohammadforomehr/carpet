@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.carpet.DetailCarpet;
+import com.example.carpet.Model.Carpet;
 import com.example.carpet.R;
 import com.example.carpet.config.Urls;
 import com.squareup.picasso.Picasso;
@@ -20,17 +22,11 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Adapter_Home extends RecyclerView.Adapter<Adapter_Home.ViewHolder> {
-    ArrayList<Integer> id=new ArrayList<>() ;
-    ArrayList<String> title=new ArrayList<>() ;
-    ArrayList<String> image=new ArrayList<>() ;
-    ArrayList<Integer> price=new ArrayList<>();
+    ArrayList<Carpet> arrayList = new ArrayList<>();
     Context context;
     Integer count=0;
-    public Adapter_Home(Context context,ArrayList<Integer> id,ArrayList<String> title,ArrayList<String> image,ArrayList<Integer>price,Integer count){
-        this.id=id;
-        this.title=title;
-        this.image=image;
-        this.price=price;
+    public Adapter_Home(Context context,ArrayList<Carpet>arrayList,Integer count){
+        this.arrayList=arrayList;
         this.context=context;
         this.count=count;
     }
@@ -44,29 +40,30 @@ public class Adapter_Home extends RecyclerView.Adapter<Adapter_Home.ViewHolder> 
     @Override
     public void onBindViewHolder(final ViewHolder holder,final int position) {
         DecimalFormat format_number=new DecimalFormat("###,###,###");
-        holder.item_title.setText(title.get(position));
-        holder.item_price.setText(format_number.format(price.get(position)).toString()+" تومان");
-        Picasso.with(context).load(Urls.url+image.get(position)).into(holder.item_image);
-//        holder.click_item_recycler.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                holder.intent=new Intent(context,info_item.class);
-//                holder.intent.putExtra("id_carpet",isbn.get(position)+"");
-//                context.startActivity( holder.intent);
-//            }
-//        });
+        final Carpet item=arrayList.get(position);
+        holder.item_title.setText(item.getTitle());
+        holder.item_price.setText(format_number.format(item.getPrice()).toString()+" تومان");
+        Picasso.with(context).load(Urls.url+item.getImage()).into(holder.item_image);
+        holder.click_item_recycler.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holder.intent=new Intent(context, DetailCarpet.class);
+                holder.intent.putExtra("IdCarpet","/app/detail/"+item.getId());
+                context.startActivity( holder.intent);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         if (count!=0) {
-            if (10 > id.size()) {
-                return id.size();
+            if (10 > arrayList.size()) {
+                return arrayList.size();
             } else {
                 return 10;
             }
         }else {
-            return id.size();
+            return arrayList.size();
         }
     }
 
@@ -81,7 +78,7 @@ public class Adapter_Home extends RecyclerView.Adapter<Adapter_Home.ViewHolder> 
             item_image=itemView.findViewById(R.id.img_cardview);
             item_title=itemView.findViewById(R.id.txv_title_cardview);
             item_price=itemView.findViewById(R.id.txv_price_cardview);
-            click_item_recycler=itemView.findViewById(R.id.card_view);
+            click_item_recycler=itemView.findViewById(R.id.card_view_home);
         }
     }
 }

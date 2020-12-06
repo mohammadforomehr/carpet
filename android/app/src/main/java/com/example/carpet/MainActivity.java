@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
                         case R.id.nav_offers:
                             selectfragment=new OfferFragment();
                             break;
+                        case R.id.nav_categoris:
+                            selectfragment=new CategoriFragment();
                     }
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                             selectfragment).commit();
