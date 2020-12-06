@@ -12,61 +12,24 @@ class PostController extends Controller
 {
     public function news()
     {
-        $results = [];
-        foreach (post::latest('id')->paginate() as $post) {
-            $results[] = [
-                'id' => $post->id,
-                'title' => $post->title,
-                'price' => $post->price,
-                'image' => $post->image,
-            ];
-        }
-        if ($results != null) {
-            return response()->json([
-                'result' => $results
-            ]);
-        }else{
-            return ['result'=> 'not data'];
-        }
+        return post::latest('id')->paginate(7);
     }
     Public function amazing(){
-        $results = [];
-        foreach (post::where('amazing', '=', 'true')->latest('id')->paginate() as $post) {
-            $results[] = [
-                'id' => $post->id,
-                'title' => $post->title,
-                'price' => $post->price,
-                'image' => $post->image,
-            ];
-        }
-        if ($results != null) {
-            return response()->json([
-                'result' => $results
-            ]);
-        }else{
-            return ['result'=> 'not data'];
-        }
+    
+       return post::where('amazing', '=', 'true')->latest('id')->paginate(7);
+        
     }
-    public function detail($id){
-        $results=post::find($id);
-        return response()->json([
-            'result' => $results
-        ]);
+     Public function related($id){
+       return post::where('id_category', '=', $id)->latest('id')->paginate(7);
+    }
+ public function detail($id){
+        return post::find($id);
+        
     }
     Public function search($field,$value){
-        $results = [];
-        foreach (post::where($field, 'like', "%".$value."%")->latest('id')->paginate() as $post) {
-            $results[] = [
-                'id' => $post->id,
-                'title' => $post->title,
-                'price' => $post->price,
-                'image' => $post->image,
-            ];
-        }
+        $results = post::where($field, 'like', "%".$value."%")->latest('id')->paginate(7);
         if ($results != null) {
-            return response()->json([
-                'result' => $results
-            ]);
+         return $results;
         }else{
             return ['result'=> 'not data'];
         }

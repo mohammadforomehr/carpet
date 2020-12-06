@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/app/new',\App\Http\Controllers\PostController::class . '@news');
 Route::get('/app/amazing',\App\Http\Controllers\PostController::class . '@amazing');
 Route::get('/app/detail/{id}',\App\Http\Controllers\PostController::class . '@detail')->whereNumber('id');
+Route::get('/app/related/{id}',\App\Http\Controllers\PostController::class . '@related')->whereNumber('id');
 //search
 Route::get('/app/search/{field}/{value}',\App\Http\Controllers\PostController::class . '@search');
 //category
