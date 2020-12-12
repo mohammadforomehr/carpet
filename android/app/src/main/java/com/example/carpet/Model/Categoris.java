@@ -4,14 +4,9 @@ public class Categoris {
 
     private String title;
     private String image;
-    private String caption;
-    private String color;
-    private String plan;
-    private String size;
     private int id;
-    private int code_carpet;
-    private int shoulder;
-    private int price;
+    private int parent_id;
+
     public String getTitle() {
             return title;
         }
@@ -26,33 +21,6 @@ public class Categoris {
         this.image = image;
     }
 
-    public String getCaption() {
-        return caption;
-    }
-    public void setCaption(String caption) {
-        this.caption = caption;
-    }
-
-    public String getColor() {
-        return color;
-    }
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public String getPlan() {
-        return plan;
-    }
-    public void setPlan(String plan) {
-        this.plan = plan;
-    }
-
-    public String getSize() {
-        return size;
-    }
-    public void setSize(String size) {
-        this.size = size;
-    }
 
     public int getId() {
         return id;
@@ -61,24 +29,10 @@ public class Categoris {
         this.id = id;
     }
 
-    public int getCode_carpet() {
-        return code_carpet;
+    public int getParent_id() {
+        return parent_id;
     }
-    public void setCode_carpet(int code_carpet) {
-        this.code_carpet = code_carpet;
-    }
-
-    public int getShoulder() {
-        return shoulder;
-    }
-    public void setShoulder(int shoulder) {
-        this.shoulder = shoulder;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-    public void setPrice(int price) {
-        this.price = price;
+    public void setParent_id(int parent_id) {
+        this.parent_id = parent_id;
     }
 }

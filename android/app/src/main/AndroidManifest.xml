@@ -14,7 +14,8 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DetailCarpet"></activity>
+        <activity android:name=".SubCategori"></activity>
+        <activity android:name=".DetailCarpet" />
         <activity android:name=".ListRecycleHome" />
         <activity android:name=".splashscreen">
             <intent-filter>

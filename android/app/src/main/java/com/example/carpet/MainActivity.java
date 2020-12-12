@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 
 public class MainActivity extends AppCompatActivity {
     boolean doubleBackToExitPressedOnce = false;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNav=findViewById(R.id.botton_navigation);
         bottomNav.setOnNavigationItemSelectedListener(nav);
+        bottomNav.getMenu().getItem(1).setChecked(true);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new HomeFragment()).commit();
     }

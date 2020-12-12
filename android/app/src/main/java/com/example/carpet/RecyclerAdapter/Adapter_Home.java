@@ -56,15 +56,7 @@ public class Adapter_Home extends RecyclerView.Adapter<Adapter_Home.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        if (count!=0) {
-            if (10 > arrayList.size()) {
-                return arrayList.size();
-            } else {
-                return 10;
-            }
-        }else {
-            return arrayList.size();
-        }
+return arrayList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

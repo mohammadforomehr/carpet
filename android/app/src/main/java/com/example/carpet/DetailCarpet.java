@@ -53,7 +53,6 @@ public class DetailCarpet extends AppCompatActivity implements View.OnClickListe
     RecyclerView.LayoutManager rcl_mng_related;
     RecyclerView.Adapter adp_related;
     AVLoadingIndicatorView indicatorView;
-    int IdCarpet;
     String image_link;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +63,7 @@ public class DetailCarpet extends AppCompatActivity implements View.OnClickListe
         bundle = intent.getExtras();
         Definition_element();
         request();
-        request_related();
+
     }
 
     public void Definition_element(){
@@ -127,11 +126,12 @@ public class DetailCarpet extends AppCompatActivity implements View.OnClickListe
                         txv_shoulder.setText("شانه :   " + response.getInt("shoulder")+"");
                         txv_size.setText("سایز :   " + response.getString("size").toString());
                         txv_title.setText(response.getString("title").toString());
-                        IdCarpet=response.getInt("id");
                         image_link=response.getString("image");
                         Picasso.with(DetailCarpet.this).load(Urls.url + response.getString("image")).into(img_detail);
                         Picasso.with(DetailCarpet.this).load(Urls.url + response.getString("image")).into(img_fullscreen);
+                        request_related(response.getInt("id_category"));
                         indicatorView.setVisibility(View.GONE);
+
                 }
                 catch (JSONException e)
                 {
@@ -153,8 +153,8 @@ public class DetailCarpet extends AppCompatActivity implements View.OnClickListe
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, listener, errorListener);
         AppController.getInstance().addToRequestQueue(request);
     }
-    private void request_related() {
-        String url = Urls.url+"/app/related/"+IdCarpet;
+    private void request_related(int id) {
+        String url = Urls.url+"/app/related/"+id;
         Response.Listener<JSONObject> listener = new Response.Listener<JSONObject>()
         {
 

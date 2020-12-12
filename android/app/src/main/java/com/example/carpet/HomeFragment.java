@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,10 +26,14 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.example.carpet.Model.Carpet;
+import com.example.carpet.Model.Categoris;
+import com.example.carpet.RecyclerAdapter.Adapter_Categoris;
+import com.example.carpet.RecyclerAdapter.Adapter_Categoris_Home;
 import com.example.carpet.RecyclerAdapter.Adapter_Home;
 import com.example.carpet.config.AppController;
 import com.example.carpet.config.Urls;
 import com.facebook.shimmer.ShimmerFrameLayout;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.todkars.shimmer.ShimmerRecyclerView;
 
 import org.json.JSONArray;
@@ -41,13 +46,14 @@ import java.util.List;
 public class HomeFragment extends Fragment  {
     SliderLayout sliderimage;
     TextSliderView textSliderView;
-    RecyclerView rcl_new ,rcl_amz ;
-    RecyclerView.LayoutManager rcl_mng_new,rcl_mng_amz;
-    RecyclerView.Adapter adp_new,adp_amz;
+    RecyclerView rcl_new ,rcl_amz,rcl_cat ;
+    RecyclerView.LayoutManager rcl_mng_new,rcl_mng_amz,rcl_mng_cat;
+    RecyclerView.Adapter adp_new,adp_amz,adp_cat;
     TextView txv_all_new,txv_all_amz;
     Intent intent;
     ShimmerRecyclerView shimmer_new,shimmer_amz;
     ShimmerFrameLayout shimmer_slider;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -62,11 +68,11 @@ public class HomeFragment extends Fragment  {
         requestslider();
         request_rclamz();
         request_rclnew();
-
+        request_categori();
     }
 
 
-    public void Definition_element(View view){
+    public void Definition_element(final View view){
         //bannerslide
         sliderimage=view.findViewById(R.id.sliderimg_home);
         sliderimage.setPresetTransformer(SliderLayout.Transformer.Accordion);
@@ -87,6 +93,13 @@ public class HomeFragment extends Fragment  {
         rcl_amz.setHasFixedSize(true);
         rcl_amz.setLayoutManager(rcl_mng_amz);
         rcl_amz.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
+
+        rcl_mng_cat=new LinearLayoutManager(getActivity());
+        rcl_mng_cat.canScrollHorizontally();
+        rcl_cat=view.findViewById(R.id.rcl_cat_home);
+        rcl_cat.setHasFixedSize(true);
+        rcl_cat.setLayoutManager(rcl_mng_cat);
+        rcl_cat.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
         // Text view
         txv_all_amz=view.findViewById(R.id.txv_amazing);
         txv_all_new=view.findViewById(R.id.txv_new);
@@ -121,6 +134,8 @@ public class HomeFragment extends Fragment  {
 
         shimmer_slider = view.findViewById(R.id.shimmer_slider);
         shimmer_slider.startShimmer();
+
+
     }
     private void requestslider() {
         String url = Urls.url+"/app/baner";
@@ -236,6 +251,50 @@ public class HomeFragment extends Fragment  {
                     adp_amz=new Adapter_Home(getActivity(),arrayList,10);
                     shimmer_amz.setVisibility(View.GONE);
                     rcl_amz.setAdapter(adp_amz);
+                }
+                catch (JSONException e)
+                {
+                    e.printStackTrace();
+                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+        };
+
+        Response.ErrorListener errorListener = new Response.ErrorListener()
+        {
+            @Override
+            public void onErrorResponse(VolleyError error)
+            {
+                Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        };
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, listener, errorListener);
+        AppController.getInstance().addToRequestQueue(request);
+    }
+    private void request_categori() {
+        String url = Urls.url+"/app/cat_child/0";
+        Response.Listener<JSONObject> listener = new Response.Listener<JSONObject>()
+        {
+            @Override
+            public void onResponse(JSONObject response)
+            {
+                try
+                {
+                    ArrayList<Categoris> arrayList=new ArrayList<>();
+                    JSONArray obj = response.getJSONArray("result");
+                    for (int i =0;i <obj.length() ;i++) {
+                        Categoris item=new Categoris();
+                        JSONObject object = obj.getJSONObject(i);
+                        item.setId(object.getInt("id"));
+                        item.setTitle(object.getString("title"));
+                        item.setImage(object.getString("image"));
+                        arrayList.add(item);
+
+                    }
+                    adp_cat=new Adapter_Categoris_Home(getActivity(),arrayList);
+                    rcl_cat.setAdapter(adp_cat);
+
                 }
                 catch (JSONException e)
                 {
