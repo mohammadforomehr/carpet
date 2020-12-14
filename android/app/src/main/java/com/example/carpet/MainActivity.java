@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNav=findViewById(R.id.botton_navigation);
         bottomNav.setOnNavigationItemSelectedListener(nav);
-        bottomNav.getMenu().getItem(1).setChecked(true);
+        bottomNav.getMenu().getItem(2).setChecked(true);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new HomeFragment()).commit();
     }
@@ -43,6 +43,10 @@ public class MainActivity extends AppCompatActivity {
                             break;
                         case R.id.nav_categoris:
                             selectfragment=new CategoriFragment();
+                            break;
+                        case R.id.nav_news:
+                            selectfragment=new NewsFragment();
+                            break;
                     }
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                             selectfragment).commit();

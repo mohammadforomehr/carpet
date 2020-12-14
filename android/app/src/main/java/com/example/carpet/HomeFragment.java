@@ -66,9 +66,9 @@ public class HomeFragment extends Fragment  {
         super.onViewCreated(view, savedInstanceState);
         Definition_element(view);
         requestslider();
+        request_categori();
         request_rclamz();
         request_rclnew();
-        request_categori();
     }
 
 

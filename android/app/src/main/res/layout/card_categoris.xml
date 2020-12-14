@@ -58,7 +58,6 @@
         android:layout_height="30dp"
         android:layout_gravity="center|right"
         android:src="@drawable/ic_left"
-        android:tintMode="screen"
         android:scaleType="fitXY"
 
         />
