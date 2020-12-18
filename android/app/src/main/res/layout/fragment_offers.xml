@@ -58,7 +58,7 @@
     android:layout_marginTop="20dp"
     android:layout_marginRight="10dp"/>
     <com.google.android.material.textfield.TextInputLayout
-        app:boxStrokeColor="#F44336"
+        app:boxStrokeColor="#BC0000"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -74,13 +74,14 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_name"
+            android:layoutDirection="rtl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
             />
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
-        app:boxStrokeColor="#F44336"
+        app:boxStrokeColor="#BC0000"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -96,13 +97,14 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_email"
+            android:layoutDirection="rtl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
            />
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
-        app:boxStrokeColor="#F44336"
+        app:boxStrokeColor="#BC0000"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -118,13 +120,14 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_phone"
+            android:layoutDirection="rtl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="phone"
              />
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
-        app:boxStrokeColor="#F44336"
+        app:boxStrokeColor="#BC0000"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -140,13 +143,14 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_web"
+            android:layoutDirection="rtl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textWebEditText"
              />
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
-        app:boxStrokeColor="#F44336"
+        app:boxStrokeColor="#BC0000"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -162,6 +166,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_message"
+            android:layoutDirection="rtl"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:gravity="top"
@@ -172,6 +177,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
             <Button
+                android:textColor="#ffff"
                 android:id="@+id/btn_save_offer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

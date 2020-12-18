@@ -1,7 +1,9 @@
 package com.example.carpet;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,9 +11,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,6 +40,8 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.todkars.shimmer.ShimmerRecyclerView;
 
+import net.skoumal.fragmentback.BackFragment;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,7 +49,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment  {
+public class HomeFragment extends Fragment {
     SliderLayout sliderimage;
     TextSliderView textSliderView;
     RecyclerView rcl_new ,rcl_amz,rcl_cat ;
@@ -53,7 +59,7 @@ public class HomeFragment extends Fragment  {
     Intent intent;
     ShimmerRecyclerView shimmer_new,shimmer_amz;
     ShimmerFrameLayout shimmer_slider;
-
+    boolean doubleBackToExitPressedOnce = false;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -64,11 +70,15 @@ public class HomeFragment extends Fragment  {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        if (getFragmentManager().getBackStackEntryCount()==1){
+          Toast.makeText(getActivity(),"dfgfdgdfgfdg",Toast.LENGTH_LONG).show();
+        }
         Definition_element(view);
         requestslider();
         request_categori();
         request_rclamz();
         request_rclnew();
+
     }
 
 
@@ -316,5 +326,7 @@ public class HomeFragment extends Fragment  {
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, listener, errorListener);
         AppController.getInstance().addToRequestQueue(request);
     }
+
+
 
 }

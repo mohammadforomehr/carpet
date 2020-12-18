@@ -58,9 +58,9 @@
                 android:layout_height="230dp"
                 android:id="@+id/shimmer_slider"
                 android:background="@color/cardview_shadow_start_color"
-                android:layout_marginTop="20dp"/>
+                android:layout_marginTop="10dp"/>
             <com.daimajia.slider.library.SliderLayout
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:id="@+id/sliderimg_home"
                 android:layout_width="match_parent"
                 android:layout_height="230dp"
@@ -76,7 +76,7 @@
                 android:id="@+id/rcl_cat_home"/>
 
             <LinearLayout
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginLeft="5dp"
                 android:orientation="vertical"
@@ -100,7 +100,7 @@
         android:fontFamily="@font/b_roya"
         android:text="پیشنهاد ویژه"
         android:textColor="#BC0000"
-        android:textSize="25dp"
+        android:textSize="20dp"
         android:textStyle="bold"
         android:layout_marginRight="15dp"
         ></TextView>
@@ -116,7 +116,7 @@
         android:layout_marginLeft="10dp"
         android:fontFamily="@font/b_roya"
         android:gravity="center"
-        android:text="مشاهده همه > "
+        android:text="مشاهده همه"
         android:textColor="#9E9E9E"
         android:textSize="15dp"
         android:textStyle="bold"></TextView>
@@ -147,13 +147,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginRight="10dp"
                     android:layoutDirection="rtl" />
 
             </LinearLayout>
             <LinearLayout
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginLeft="5dp"
                 android:orientation="vertical"
@@ -177,7 +177,7 @@
                         android:fontFamily="@font/b_roya"
                         android:text="جدیدترین ها"
                         android:textColor="#2C2C2C"
-                        android:textSize="25dp"
+                        android:textSize="20dp"
                         android:textStyle="bold"
                         android:layout_marginRight="15dp"
                         ></TextView>
@@ -193,7 +193,7 @@
                         android:layout_marginLeft="10dp"
                         android:fontFamily="@font/b_roya"
                         android:gravity="center"
-                        android:text="مشاهده همه > "
+                        android:text="مشاهده همه"
                         android:textColor="#9E9E9E"
                         android:textSize="15dp"
                         android:textStyle="bold"></TextView>
@@ -225,7 +225,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layoutDirection="rtl"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="5dp"
                     />
 
             </LinearLayout>
