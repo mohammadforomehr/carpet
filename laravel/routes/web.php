@@ -20,7 +20,7 @@ Route::get('/app/amazing',\App\Http\Controllers\PostController::class . '@amazin
 Route::get('/app/detail/{id}',\App\Http\Controllers\PostController::class . '@detail')->whereNumber('id');
 Route::get('/app/related/{id}',\App\Http\Controllers\PostController::class . '@related')->whereNumber('id');
 //search
-Route::get('/app/search/{field}/{value}',\App\Http\Controllers\PostController::class . '@search');
+Route::get('/app/search/{value}',\App\Http\Controllers\PostController::class . '@search');
 //category
 Route::get('/app/cat_parent',\App\Http\Controllers\app\CategoryController::class . '@parent');
 Route::get('/app/cat_child/{parent_id}',\App\Http\Controllers\app\CategoryController::class . '@child')->whereNumber('parent_id');
@@ -31,3 +31,5 @@ Route::post('/app/offers',\App\Http\Controllers\app\OffersController::class .'@s
 Route::get('/app/news',\App\Http\Controllers\app\NewsController::class . '@index');
 //benner
 Route::get('/app/baner',\App\Http\Controllers\app\BanerController::class . '@index');
+//about
+Route::get('/app/about',\App\Http\Controllers\app\AboutController::class . '@index');

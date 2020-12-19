@@ -16,7 +16,7 @@ class NewsController extends Controller
         if ($results != null) {
             return $results;
         }else{
-            return ['result'=> 'not data'];
+            return ['data'=> 'not data'];
         }
     }
     
