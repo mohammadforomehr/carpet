@@ -23,6 +23,7 @@ import com.example.carpet.Model.Carpet;
 import com.example.carpet.RecyclerAdapter.Adapter_List;
 import com.example.carpet.config.AppController;
 import com.example.carpet.config.Urls;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import org.json.JSONArray;
@@ -38,6 +39,7 @@ public class SearchFragment extends Fragment {
     List<Carpet> arrayList=new ArrayList<Carpet>();
     EditText edt_search;
     AVLoadingIndicatorView indicatorView;
+    FloatingActionButton actionButton;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -71,6 +73,24 @@ public class SearchFragment extends Fragment {
 
             }
         });
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                if (recyclerView.computeVerticalScrollOffset() >= recyclerView.getHeight() ){
+                    actionButton.show();
+                }else {
+                    actionButton.hide();
+                }
+            }
+        });
+        actionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recyclerView.scrollToPosition(0);
+            }
+        });
     }
     public void Definition_element(View v){
         //recycle view
@@ -81,6 +101,8 @@ public class SearchFragment extends Fragment {
         edt_search=v.findViewById(R.id.edt_search);
 
         indicatorView=v.findViewById(R.id.indicator_search);
+        //
+        actionButton=v.findViewById(R.id.floating_action_search);
     }
     private void request() {
         String url = Urls.url+"/app/search/"+edt_search.getText();

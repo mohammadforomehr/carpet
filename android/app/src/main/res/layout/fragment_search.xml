@@ -34,21 +34,41 @@
             android:focusable="true"
             />
     </com.google.android.material.textfield.TextInputLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/rcl_search"
         android:layoutDirection="rtl"
        />
-    <com.wang.avi.AVLoadingIndicatorView
-        android:visibility="invisible"
-        android:layout_gravity="center|bottom"
-        android:layout_marginBottom="10dp"
-        android:layout_width="50dp"
-        app:indicatorColor="#F44336"
-        android:layout_height="50dp"
-        android:id="@+id/indicator_search"
-        app:indicatorName="ballSpinFadeLoader"
-        style="@style/AVLoadingIndicatorView"
-        />
+
+        <com.wang.avi.AVLoadingIndicatorView
+            android:id="@+id/indicator_search"
+            style="@style/AVLoadingIndicatorView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignBottom="@+id/rcl_search"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center|bottom"
+            android:layout_marginBottom="-55dp"
+            android:visibility="invisible"
+            app:indicatorColor="#F44336"
+            app:indicatorName="ballSpinFadeLoader" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:id="@+id/floating_action_search"
+            style="@style/Widget.Design.FloatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="10dp"
+            android:backgroundTint="#bc0000"
+            app:srcCompat="@drawable/ic_up"
+            android:visibility="gone"
+            />
+    </RelativeLayout>
 </LinearLayout>

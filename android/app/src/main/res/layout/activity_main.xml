@@ -23,9 +23,9 @@
         android:layout_height="60dp"
         app:itemIconTint="@drawable/nav_bootom_color"
         app:itemTextColor="@drawable/nav_bootom_color"
-        app:menu="@menu/botton_navigation"
         android:background="@drawable/tab_background"
         app:itemIconSize="30dp"
+
         >
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>

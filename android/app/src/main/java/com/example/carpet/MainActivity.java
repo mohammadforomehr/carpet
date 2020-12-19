@@ -12,6 +12,8 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.carpet.RecyclerAdapter.AboutFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationMenu;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 
@@ -26,7 +28,10 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNav=findViewById(R.id.botton_navigation);
         bottomNav.setOnNavigationItemSelectedListener(nav);
+        bottomNav.getMenu().clear();
+        bottomNav.inflateMenu(R.menu.botton_navigation);
         bottomNav.getMenu().getItem(0).setChecked(true);
+
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new HomeFragment()).commit();
     }
@@ -40,9 +45,9 @@ public class MainActivity extends AppCompatActivity {
                         case R.id.nav_home:
                             selectfragment=new HomeFragment();
                             break;
-                        case R.id.nav_offers:
-                            selectfragment=new OfferFragment();
-                            break;
+//                        case R.id.nav_offers:
+//                            selectfragment=new OfferFragment();
+//                            break;
                         case R.id.nav_categoris:
                             selectfragment=new CategoriFragment();
                             break;
@@ -52,6 +57,10 @@ public class MainActivity extends AppCompatActivity {
                         case R.id.nav_search:
                             selectfragment=new SearchFragment();
                             break;
+                        case R.id.nav_about:
+                            selectfragment=new AboutFragment();
+                            break;
+
                     }
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                             selectfragment).commit();

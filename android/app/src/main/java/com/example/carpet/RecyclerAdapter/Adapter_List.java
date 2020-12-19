@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ import com.example.carpet.Model.Carpet;
 import com.example.carpet.R;
 import com.example.carpet.config.AppController;
 import com.example.carpet.config.Urls;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 import com.wang.avi.AVLoadingIndicatorView;
 
@@ -73,7 +75,9 @@ public class Adapter_List extends RecyclerView.Adapter<Adapter_List.ViewHolder> 
                 context.startActivity( holder.intent);
             }
         });
+
         if(position == getItemCount()-1){
+
             if (currentPage < lastPage ){
                 indicatorView.setVisibility(View.VISIBLE);
                 String url = next_page;
@@ -103,6 +107,7 @@ public class Adapter_List extends RecyclerView.Adapter<Adapter_List.ViewHolder> 
                             currentPage=response.getInt("current_page");
                             notifyItemInserted(arrayList.size()-1);
                             indicatorView.setVisibility(View.GONE);
+
 
                         }
                         catch (JSONException e)
@@ -142,6 +147,7 @@ public class Adapter_List extends RecyclerView.Adapter<Adapter_List.ViewHolder> 
         public CardView click_item_recycler;
         public ViewHolder(View itemView) {
             super(itemView);
+
             item_image=itemView.findViewById(R.id.img_cardview_list);
             item_title=itemView.findViewById(R.id.txv_title_cardview_list);
             item_price=itemView.findViewById(R.id.txv_price_cardview_list);

@@ -1,5 +1,6 @@
 package com.example.carpet;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,6 +21,7 @@ import com.example.carpet.RecyclerAdapter.Adapter_Home;
 import com.example.carpet.RecyclerAdapter.Adapter_List;
 import com.example.carpet.config.AppController;
 import com.example.carpet.config.Urls;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.todkars.shimmer.ShimmerRecyclerView;
 import com.wang.avi.AVLoadingIndicatorView;
 
@@ -38,6 +40,7 @@ public class ListRecycleHome extends AppCompatActivity {
     Bundle bundle;
     ShimmerRecyclerView shimmerRecyclerView;
     AVLoadingIndicatorView indicatorView;
+    FloatingActionButton actionButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +51,25 @@ public class ListRecycleHome extends AppCompatActivity {
         Definition_element();
         Definition_array();
         request();
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                if (recyclerView.computeVerticalScrollOffset() >= recyclerView.getHeight()){
+                    actionButton.show();
+                }else {
+                    actionButton.hide();
+                }
+            }
+        });
+        actionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recyclerView.scrollToPosition(0);
+            }
+        });
+
     }
     public void Definition_array(){
         arrayList=new ArrayList<>();
@@ -68,6 +90,9 @@ public class ListRecycleHome extends AppCompatActivity {
         shimmerRecyclerView.showShimmer();
         //
         indicatorView=findViewById(R.id.indicator_list);
+        //
+        actionButton=findViewById(R.id.floating_action);
+
     }
     private void request() {
         String url = Urls.url+bundle.getString("Url");
