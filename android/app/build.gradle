@@ -36,7 +36,10 @@ dependencies {
     implementation 'com.todkars:shimmer-recyclerview:0.4.0'
     implementation 'com.borjabravo:readmoretextview:2.1.0'
     implementation 'com.github.samanzamani.persiandate:PersianDate:0.8'
-    implementation 'net.skoumal.fragmentback:fragment-back:0.2.3'
+    implementation "com.microsoft.appcenter:appcenter-analytics:4.0.0"
+    implementation "com.microsoft.appcenter:appcenter-crashes:4.0.0"
+    implementation 'co.pushe.plus:base:2.4.0'
+    implementation 'com.pushpole.android:pushsdk:1.7.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

@@ -5,27 +5,35 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.BroadcastReceiver;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import com.microsoft.appcenter.AppCenter;
+import com.microsoft.appcenter.analytics.Analytics;
+import com.microsoft.appcenter.crashes.Crashes;
 import com.example.carpet.RecyclerAdapter.AboutFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationMenu;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 
+import com.pushpole.sdk.PushPole;
+
+
 public class MainActivity extends AppCompatActivity {
     boolean doubleBackToExitPressedOnce = false;
     BottomNavigationView bottomNav;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        PushPole.initialize(this,true);
+        AppCenter.start(getApplication(), "084cccf4-4667-426a-befc-7119dd16a8ee", Analytics.class, Crashes.class);
         getSupportActionBar().hide();
-
         bottomNav=findViewById(R.id.botton_navigation);
         bottomNav.setOnNavigationItemSelectedListener(nav);
         bottomNav.getMenu().clear();
@@ -45,9 +53,6 @@ public class MainActivity extends AppCompatActivity {
                         case R.id.nav_home:
                             selectfragment=new HomeFragment();
                             break;
-//                        case R.id.nav_offers:
-//                            selectfragment=new OfferFragment();
-//                            break;
                         case R.id.nav_categoris:
                             selectfragment=new CategoriFragment();
                             break;
@@ -94,4 +99,5 @@ public class MainActivity extends AppCompatActivity {
                     new HomeFragment()).commit();
         }
     }
+
 }

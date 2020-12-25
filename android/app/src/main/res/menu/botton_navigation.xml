@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/nav_home"
         android:enabled="true"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/ic_home_nav"
         android:title=""></item>
     <item android:id="@+id/nav_search"
         android:enabled="true"
-        android:icon="@drawable/ic_search"
+        android:icon="@drawable/ic_search_nav"
         android:title=""></item>
     <item android:id="@+id/nav_categoris"
         android:enabled="true"
@@ -20,9 +20,6 @@
         android:enabled="true"
         android:icon="@drawable/ic_about"
         android:title=""></item>
-<!--    <item android:id="@+id/nav_offers"-->
-<!--        android:enabled="true"-->
-<!--        android:icon="@drawable/ic_contract"-->
-<!--        android:title=""></item>-->
+
 
 </menu>
